@@ -8,8 +8,8 @@ from scipy.cluster.hierarchy import dendrogram, linkage, fcluster
 
 print("---------------PART I---------------------------------------------------------------")
 print("Importation du donnees :")
-os.chdir(r"C:\Users\hp\OneDrive\Bureau\project data science")
-corona = pd.read_csv("COVID-19 Coronavirus.csv")
+os.chdir(r"C:\Users\hp\PycharmProjects\TP_DataScience")
+corona = pd.read_csv("COVID-19 Coronavirus.csv", encoding='unicode_escape')
 
 print(corona)
 print("-------------------------------------------------------------------")
@@ -54,8 +54,8 @@ print("---------------PART II---------------------------------------------------
 # print(pandas.DataFrame(corona.index[idg], groupes_cah[idg]))
 
 # =====================KMEANS AVEC DONNEE CENTRALISE REDUITE==================#
-
-kmeans = cluster.KMeans(n_clusters=4)
+# Clustering depends of the severity of covid
+kmeans = cluster.KMeans(n_clusters=3)
 kmeans.fit(coronacr)
 # Tri index des groupes
 idk = np.argsort(kmeans.labels_)
