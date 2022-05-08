@@ -7,9 +7,9 @@ from matplotlib import pyplot as plt
 from scipy.cluster.hierarchy import dendrogram, linkage, fcluster
 
 print("---------------PART I---------------------------------------------------------------")
-print("Importation du données :")
+print("Importation du donnees :")
 os.chdir(r"C:\Users\hp\OneDrive\Bureau\project data science")
-corona = pd.read_csv("corona_morocco.csv")
+corona = pd.read_csv("COVID-19 Coronavirus.csv")
 
 print(corona)
 print("-------------------------------------------------------------------")
@@ -24,34 +24,34 @@ y = corona.iloc[:, 0]
 print("Y :")
 print(y)
 corr = corona.corr()
-print("Matrice de corrolation:")
+print("Matrices de correlation:")
 print(corr)
 
-# Centralisation et réduction
+# Centralisation et reduction
 coronacr = preprocessing.scale(x)
 print("variables centrés et réduites :")
 print(coronacr)
 
 # Vecteurs et valeurs propres
 eig_vals, eig_vecs = np.linalg.eig(corr)
-print("Vect  propres :")
+print("Vect  propre :")
 print(eig_vecs)
-print("Val  propres :")
+print("Val  propre :")
 print(eig_vals)
 
 print("---------------PART II---------------------------------------------------------------")
 # =====================CAH==================#
 # matrice des liens + affichage
 # materialisation 4 classes
-#z = linkage(coronacr, method="ward", metric="euclidean")
-#dendrogram(z, labels=corona.index, orientation="left", color_threshold=27)
-#plt.show()
+# z = linkage(coronacr, method="ward", metric="euclidean")
+# dendrogram(z, labels=corona.index, orientation="left", color_threshold=27)
+# plt.show()
 # Decoupage hauteur 27
-#groupes_cah = fcluster(z, t=27, criterion="distance")
-#print(groupes_cah)
+# groupes_cah = fcluster(z, t=27, criterion="distance")
+# print(groupes_cah)
 # tri index + Observations + groupes
-#idg = np.argsort(groupes_cah)
-#print(pandas.DataFrame(corona.index[idg], groupes_cah[idg]))
+# idg = np.argsort(groupes_cah)
+# print(pandas.DataFrame(corona.index[idg], groupes_cah[idg]))
 
 # =====================KMEANS AVEC DONNEE CENTRALISE REDUITE==================#
 
@@ -63,5 +63,5 @@ idk = np.argsort(kmeans.labels_)
 print(pandas.DataFrame(corona.index[idk], kmeans.labels_[idk]))
 # Distances aux centres de classes
 print(kmeans.transform(coronacr))
-# correspondace
-#pandas.crosstab(groupes_cah, kmeans.labels_)
+# correspondence
+# pandas.crosstab(groupes_cah, kmeans.labels_)
