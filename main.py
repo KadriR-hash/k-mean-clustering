@@ -43,15 +43,15 @@ print("---------------PART II---------------------------------------------------
 # =====================CAH==================#
 # matrice des liens + affichage
 # materialisation 4 classes
-# z = linkage(coronacr, method="ward", metric="euclidean")
-# dendrogram(z, labels=corona.index, orientation="left", color_threshold=27)
-# plt.show()
+z = linkage(coronacr, method="ward", metric="euclidean")
+dendrogram(z, labels=corona.index, orientation="left", color_threshold=27)
+plt.show()
 # Decoupage hauteur 27
-# groupes_cah = fcluster(z, t=27, criterion="distance")
-# print(groupes_cah)
+groupes_cah = fcluster(z, t=27, criterion="distance")
+print(groupes_cah)
 # tri index + Observations + groupes
-# idg = np.argsort(groupes_cah)
-# print(pandas.DataFrame(corona.index[idg], groupes_cah[idg]))
+idg = np.argsort(groupes_cah)
+print(pandas.DataFrame(corona.index[idg], groupes_cah[idg]))
 
 # =====================KMEANS AVEC DONNEE CENTRALISE REDUITE==================#
 # Clustering depends of the severity of covid
@@ -64,4 +64,4 @@ print(pandas.DataFrame(corona.index[idk], kmeans.labels_[idk]))
 # Distances aux centres de classes
 print(kmeans.transform(coronacr))
 # correspondence
-# pandas.crosstab(groupes_cah, kmeans.labels_)
+pandas.crosstab(groupes_cah, kmeans.labels_)
